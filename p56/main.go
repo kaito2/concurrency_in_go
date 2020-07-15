@@ -18,12 +18,12 @@ func main() {
 		go func() {
 			// ここで goroutine が呼び出されたかを確認している
 			// => 本当は c.Wait() が呼び出されたかを確認したい
-			goroutineRunning.Done()
 			fmt.Println("goroutine start!")
 			c.L.Lock()
 			defer c.L.Unlock()
 			// c.Wait() が呼ばれる前に button.Clicked.Broadcast()
 			// が呼ばれると c.Wait() が永遠に待ってデッドロックする
+			goroutineRunning.Done()
 			c.Wait()
 			fn()
 		}()
@@ -51,3 +51,13 @@ func main() {
 	button.Clicked.Broadcast() //7
 	clickRegistered.Wait()
 }
+
+/* output
+$ go run p56/main.go
+goroutine start!
+goroutine start!
+goroutine start!
+Mouse clicked.
+Maximizing window.
+Displaying annoying dialog box!
+*/

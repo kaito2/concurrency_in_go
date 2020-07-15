@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 func main() {
@@ -24,5 +25,11 @@ func main() {
 	}
 
 	increments.Wait()
+	time.Sleep(1 * time.Second)
 	fmt.Printf("Count is %d\n", count)
 }
+
+/* output
+$ go run p57/main.go
+Count is 1
+*/
