@@ -10,7 +10,7 @@ func main() {
 	loopData := func(handleData chan<- int) {
 		defer close(handleData)
 		for i := range data {
-			handleData <- data[i]
+			handleData <- i
 		}
 	}
 

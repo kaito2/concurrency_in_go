@@ -18,5 +18,6 @@ func main() {
 
 	doWork(nil)
 	// 何かしらの処理
+	// ...
 	fmt.Println("Done.")
 }
