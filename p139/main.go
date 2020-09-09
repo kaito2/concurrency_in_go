@@ -10,7 +10,7 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	// done := make(chan interface{})
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(context.Background()) // 1
 	// defer close(done)
 	defer cancel()
 
@@ -20,7 +20,7 @@ func main() {
 		if err := printGreeting(ctx); err != nil {
 			fmt.Printf("cannot print greeting: %v\n", err)
 			// return
-			cancel()
+			cancel() // 2
 		}
 	}()
 
